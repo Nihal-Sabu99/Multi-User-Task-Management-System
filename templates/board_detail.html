@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Management System - Board Details</title>
+    <link rel="stylesheet" href="/static/stylesss.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Task Management System</div>
+        <a class ="back-dashboard" href="/">← Back to Dashboard</a>
+    </div>
+    <main>
+        <div class="boardetail-card">
+            <h2>Board: {{ board.name }}</h2>
+                <p>Description: {{ board.description }}</p>
+                <a href="/board/{{ board.id }}/members" class="m-button">Members</a>
+                {% if is_creator %}
+                    <a href="/board/{{ board.id }}/settings" class="m-button">Settings</a>
+                {% endif %}
+                <p><strong>Task Counters:</strong> Active: {{ active_count }} | Completed: {{ completed_count }} | Total: {{ total_count }}</p>
+                <h3>Tasks:</h3>
+                    <a href="/board/{{ board.id }}/add_task" class="m-button">+ Create New Task</a>
+                    {% if tasks %}
+                        {% for task in tasks %}
+                        <div class="task-block {% if task.unassigned %}unassigned{% endif %}">
+                            <h4>Task: {{ task.title }}</h4>
+                            <p> Status: {% if task.completed %}Completed{% else %}In Progress{% endif %}<br>
+                                Completed at: {{ task.completed_at.strftime('%Y-%m-%d %H:%M:%S') if task.completed_at.strftime else task.completed_at }}<br><br>
+                                Due: {{ task.due_date }}</p>
+                            <p>Assignees: 
+                                {% if task.assignees and task.assignees|length > 0 %}
+                                    {{ task.assignees|join(", ") }}
+                                {% else %}
+                                    None
+                                {% endif %} </p>
+                            <a href="/board/{{ board.id }}/task/{{ task.id }}" class="m-button">View Details</a>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No tasks yet. Create a new task to get started!</p>
+                    {% endif %}
+        </div>
+    </main>
+    <script type="module" src="/static/firebase-login.js"></script>
+</body>
+</html>

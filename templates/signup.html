@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Management System - Sign Up</title>
+    <link rel="stylesheet" href="/static/stylesss.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Task Management System</div>
+    </div>
+    <div class="signup-container">
+        <div class="signup-left-panel">
+            <h2>HELLO THERE!</h2>
+            <p class="signup-welcome-text"> Join us and manage your tasks with ease.</p>
+        </div>
+        <div class="signup-right-panel">
+            <h2>Create Account</h2>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Email" required><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required><br>
+            <button id="sign-up" class="signup-btn">Sign Up</button>
+            <p class="login-link">Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </div>
+    <script type="module" src="/static/firebase-login.js"></script>
+</body>
+</html>

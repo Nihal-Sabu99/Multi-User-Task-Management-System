@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Management System - Add Task</title>
+    <link rel="stylesheet" href="/static/stylesss.css">
+</head>
+<body>
+    <main>
+        <div class="navbar">
+            <div class="logo">Task Management System</div>
+            <a class="back-dashboard" href="/board/{{ board.id }}">← Back to Board</a>
+        </div>
+        <div class="add-task-container">
+            <h2>Add New Task to "{{ board.name }}"</h2>
+            <form action="/board/{{ board.id }}/add_task" method="post">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+                <label for="due_date">Due Date:</label>
+                <input type="date" id="due_date" name="due_date" required>
+                {% if is_creator %}
+                    <label>Assignees:</label>
+                    <div class="assignees-list">
+                        {% for member in members %}
+                        <div class="assignee-item">
+                            <input type="checkbox" id="assignee-{{ loop.index }}" name="assignees" value="{{ member }}">
+                            <label for="assignee-{{ loop.index }}">{{ member }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <button type="submit" class="add-task-btn">Create Task</button>
+            </form>
+        </div>
+    </main>
+    <script type="module" src="/static/firebase-login.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Management System - Create Board</title>
+    <link rel="stylesheet" href="/static/stylesss.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Task Management System</div>
+        <a class ="back-dashboard" href="/">← Back to Dashboard</a>
+    </div>
+    <main>
+        <div class="create-board-container">
+            <h2>Create New Board</h2>
+            <form action="/create_board" method="post">
+                <label for="board_name">Board Name:</label>
+                <input type="text" id="board_name" name="board_name" required>        
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+                <button type="submit" class="create-board-btn">Create Board</button>
+            </form>
+        </div>
+    </main>
+    <script type="module" src="/static/firebase-login.js"></script>
+</body>
+</html>

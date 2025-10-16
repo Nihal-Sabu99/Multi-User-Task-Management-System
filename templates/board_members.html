@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Management System - Board Members</title>
+    <link rel="stylesheet" href="/static/stylesss.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Task Manager</div>
+        <a class="back-dashboard" href="/board/{{ board.id }}">← Back to Board</a>
+    </div>
+    
+    <main>
+        <div class="member-card">
+            <h2>Board:{{ board.name }} - Members</h2>
+            
+            {% if is_creator %}
+                    <h3>Add User to Board:</h3>
+                    <form action="/board/{{ board.id }}/add_member" method="post" class="member-form">
+                        <input type="email" name="member_email" placeholder="user@example.com" required class="member-input">
+                        <button type="submit" class="mem-button">Add User</button> 
+                    </form>  
+            {% endif %} 
+
+            <h3>Board Members:</h3>
+            <!-- Creator -->    
+            <p class="owner-name">{{ board.creator }} (Owner) <span class="creator-badge">Creator</span></p>
+
+            <!-- Members -->
+            {% if board.members and board.members|length > 0 %}
+                {% for member in board.members %}
+                <div class="member-entry">
+                    <p>{{ member }} (Member)</p>       
+                    {% if is_creator %}
+                        <form action="/board/{{ board.id }}/remove_member" method="post">
+                            <input type="hidden" name="member_email" value="{{ member }}">
+                            <button type="submit" class="mem-button-danger" onclick="return confirm('Are you sure you want to remove this member?');">Remove</button>
+                        </form>
+                    {% endif %}  
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-members">No additional members</p>
+            {% endif %}
+        </div>
+        
+    </main>
+    <script type="module" src="/static/firebase-login.js"></script>
+</body>
+</html>

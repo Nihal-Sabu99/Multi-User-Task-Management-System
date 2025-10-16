@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Management System - Dashboard</title>
+    <link rel="stylesheet" href="/static/stylesss.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Task Management System</div>
+        <button id="sign-out">Sign Out</button>
+    </div>
+    <main>
+        <div class="dashboard-header">
+            <h2>Welcome, {{ user_email }}</h2>
+            <a href="/create_board" class="button">+ Create New Board</a>
+        </div>
+        <div class="boards-section">
+            <div class="board-container">
+                {% if boards %}
+                    {% for board in boards %}
+                    <div class="board-card">
+                        <h4>{{ board.name }}</h4>
+                        <p>Description: {{ board.description }}</p>
+                        {% if board.is_creator %}
+                            <p class="creator-badge">Creator</p>
+                        {% endif %}
+                        <a href="/board/{{ board.id }}" class="view-board">View Board</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty-message">You don't have any boards yet. Create a new board to get started!</p>
+            {% endif %}
+            </div>
+        </div>
+    </main>
+    <script type="module" src="/static/firebase-login.js"></script>
+</body>
+</html>
