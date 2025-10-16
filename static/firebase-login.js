@@ -3,13 +3,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebas
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAlY8sZViIO599kCZWIyHcaO87P2T2vwu8",
-    authDomain: "eventboard-455410.firebaseapp.com",
-    projectId: "eventboard-455410",
-    storageBucket: "eventboard-455410.firebasestorage.app",
-    messagingSenderId: "578475600213",
-    appId: "1:578475600213:web:24be7f09a28ff5d22127dc",
-    measurementId: "G-D1TJ04754M"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
 };
 
 window.addEventListener("load", function () {
@@ -116,4 +116,5 @@ function parseCookieToken(cookie) {
         }
     }
     return "";
+
 }
